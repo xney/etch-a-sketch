@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+}
+
+div {
+    border-style: solid;
+    border-color: red;
+    border-width: 2px;
+}
+
+#grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.gridMember {
+    width: 25%;
+    padding: 10%;
+} 
+
+.hovered { 
+    background-color: black;
+}
