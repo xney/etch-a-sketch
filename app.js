@@ -1,22 +1,34 @@
 function populateGrid(size) {
-    const grid = document.querySelector("#grid")
-    for (let i = 0; i < size; i++) {
-        const div = document.createElement("div")
-        div.classList.add("gridMember")
-        grid.appendChild(div)
+    let grid = document.querySelector("#grid");
+    while (grid.firstChild) {
+        grid.removeChild(grid.firstChild)
     }
-}
+    let totalSize = size * size;
+    let divSize = Math.floor(960 / size)
+    for (let i = 0; i < totalSize; i++) {
+        const div = document.createElement("div");
+        div.classList.add("gridMember");
+        div.setAttribute("style", "height: " + divSize.toString() +"px; width: " + divSize.toString() +"px;")
+        grid.appendChild(div);
+    }
 
-populateGrid(16)
+    function updateGridMember(gridMember) {
+        gridMember.classList.add("hovered");
+    }
 
-function updateGridMember(gridMember) {
-    gridMember.classList.add("hovered")
-}
-
-const gridMembers = document.querySelectorAll(".gridMember");
-gridMembers.forEach((gridMember) => {
+    const gridMembers = document.querySelectorAll(".gridMember");
+    gridMembers.forEach((gridMember) => {
     gridMember.addEventListener("mouseover", () => {
-        updateGridMember(gridMember)
+        updateGridMember(gridMember);
+        })
     })
+
+}
+
+const gridSizeButton = document.querySelector("#gridSize")
+gridSizeButton.addEventListener("click", () => {
+    let gridSize = parseInt(prompt("Enter the size you want each side of the grid to be"));
+    populateGrid(gridSize);
 })
+
 
